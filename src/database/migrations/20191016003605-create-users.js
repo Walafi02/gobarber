@@ -3,7 +3,7 @@ module.exports = {
     return queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -19,7 +19,6 @@ module.exports = {
       password_hash: {
         type: Sequelize.STRING,
         allowNull: true,
-        unique: true,
       },
       provider: {
         type: Sequelize.BOOLEAN,
