@@ -1,7 +1,9 @@
 import { Router } from 'express';
 
+import userCOntroller from './app/controllers/UserController';
+
 const routes = new Router();
 
-routes.get('/', (req, res) => res.send('hello walafi2'));
+routes.post('/users', userCOntroller.store);
 
 export default routes;
