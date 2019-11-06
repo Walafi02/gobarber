@@ -5,22 +5,25 @@ import PropTypes from 'prop-types';
 import AuthLayout from '~/_layouts/auth';
 import DefaultLayout from '~/_layouts/default';
 
+import { store } from '~/store';
+
 export default function RouteWrapper({
   component: Component,
   isPrivate,
   ...rest
 }) {
-  const singin = false;
+  // const singed = false;
+  const { singed } = store.getState().auth;
 
-  if (!singin && isPrivate) {
+  if (!singed && isPrivate) {
     return <Redirect to="/" />;
   }
 
-  if (singin && !isPrivate) {
+  if (singed && !isPrivate) {
     return <Redirect to="/dashboard" />;
   }
 
-  const Layout = singin ? DefaultLayout : AuthLayout;
+  const Layout = singed ? DefaultLayout : AuthLayout;
 
   return (
     <Route
