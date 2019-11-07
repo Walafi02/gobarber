@@ -1,0 +1,77 @@
+import styled, { css } from 'styled-components';
+
+import { lighten } from 'polished';
+
+export const Container = styled.div`
+  position: relative;
+`;
+
+export const Badge = styled.button`
+  background: none;
+  border: 0;
+  position: relative;
+
+  ${props =>
+    props.hasUnread &&
+    css`
+      &::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 8px;
+        height: 8px;
+        background: #ff892e;
+        content: '';
+        border-radius: 50%;
+      }
+    `}
+`;
+
+export const NotificationsList = styled.div`
+  position: absolute;
+  width: 260px;
+  left: calc(50% - 130px);
+  top: calc(100% + 30px);
+
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  padding: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(50% - 20px);
+    top: -20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid rgba(0, 0, 0, 0.6);
+  }
+`;
+
+export const Notification = styled.div`
+  color: #fff;
+
+  p {
+    text-align: left;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  time {
+    font-size: 12px;
+    opacity: 0.6;
+    align-self: flex-start;
+  }
+
+  button {
+    font-size: 12px;
+    border: 0;
+    background: none;
+    color: ${lighten(0.2, '#7159c1')};
+    padding: 0 5px;
+    margin: 0 5px;
+    border-left: rgba(255, 255, 255, 0.1);
+  }
+`;
