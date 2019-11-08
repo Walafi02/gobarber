@@ -39,6 +39,8 @@ export const NotificationsList = styled.div`
   border-radius: 4px;
   padding: 15px 0px;
 
+  display: ${props => (props.visible ? 'block' : 'none')};
+
   &::before {
     content: '';
     position: absolute;
@@ -73,10 +75,24 @@ export const Notification = styled.div`
     line-height: 18px;
   }
 
-  div {
-    display: flex;
-    align-self: flex-start;
+  time {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 5px;
+  }
 
+  button {
+    display: block;
+    font-size: 12px;
+    border: 0;
+    background: none;
+    color: ${lighten(0.2, '#7159c1')};
+    /* padding: 0 5px; */
+    padding-left: 0;
+    margin: 0 5px 0 0;
+    border-left: rgba(255, 255, 255, 0.1);
     ${props =>
       props.unread &&
       css`
@@ -87,21 +103,8 @@ export const Notification = styled.div`
           height: 8px;
           background: #ff892e;
           border-radius: 50%;
+          margin-left: 10px;
         }
       `}
-
-    time {
-      font-size: 12px;
-      opacity: 0.6;
-    }
-    button {
-      font-size: 12px;
-      border: 0;
-      background: none;
-      color: ${lighten(0.2, '#7159c1')};
-      padding: 0 5px;
-      margin: 0 5px;
-      border-left: rgba(255, 255, 255, 0.1);
-    }
   }
 `;
