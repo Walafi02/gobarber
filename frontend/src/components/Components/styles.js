@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import PerfectScrollbar from 'react-perfect-scrollbar';
+
 import { lighten } from 'polished';
 
 export const Container = styled.div`
@@ -35,7 +37,7 @@ export const NotificationsList = styled.div`
 
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
-  padding: 20px;
+  padding: 15px 0px;
 
   &::before {
     content: '';
@@ -50,8 +52,20 @@ export const NotificationsList = styled.div`
   }
 `;
 
+export const Scroll = styled(PerfectScrollbar)`
+  max-height: 200px;
+  width: 100%;
+  padding: 5px 15px;
+`;
+
 export const Notification = styled.div`
   color: #fff;
+
+  & + div {
+    margin-top: 15px;
+    padding-top: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
   p {
     text-align: left;
@@ -59,19 +73,35 @@ export const Notification = styled.div`
     line-height: 18px;
   }
 
-  time {
-    font-size: 12px;
-    opacity: 0.6;
+  div {
+    display: flex;
     align-self: flex-start;
-  }
 
-  button {
-    font-size: 12px;
-    border: 0;
-    background: none;
-    color: ${lighten(0.2, '#7159c1')};
-    padding: 0 5px;
-    margin: 0 5px;
-    border-left: rgba(255, 255, 255, 0.1);
+    ${props =>
+      props.unread &&
+      css`
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background: #ff892e;
+          border-radius: 50%;
+        }
+      `}
+
+    time {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    button {
+      font-size: 12px;
+      border: 0;
+      background: none;
+      color: ${lighten(0.2, '#7159c1')};
+      padding: 0 5px;
+      margin: 0 5px;
+      border-left: rgba(255, 255, 255, 0.1);
+    }
   }
 `;
