@@ -57,6 +57,7 @@ export default (signedIn = false) =>
             Profile,
           },
           {
+            resetOnBlur: true, // reseta a rota toda vez q ela voltar
             tabBarOptions: {
               keyboardHidesTabBar: true, // faz com que o teclado passo sobre a tab bar
               activeTintColor: '#fff',
