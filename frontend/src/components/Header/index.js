@@ -27,8 +27,9 @@ export default function Header() {
             </div>
             <img
               src={
-                profile.avatar.url ||
-                'https://api.adorable.io/avatars/51/abott@adorable.png'
+                profile.avatar
+                  ? profile.avatar.url
+                  : `https://api.adorable.io/avatar/51/${profile.name}.png`
               }
               alt="Walafi Ferreira"
             />

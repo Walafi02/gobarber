@@ -11,13 +11,18 @@ import { Container, ProviderList, Avatar, Provider, Name } from './styles';
 export default function SelectProvider({ navigation }) {
   const [providers, setProviders] = useState([]);
 
+  async function loadProviders() {
+    const response = await api.get('providers');
+    setProviders(response.data);
+  }
+
   useEffect(() => {
-    async function loadProviders() {
-      const response = await api.get('providers');
-      setProviders(response.data);
-    }
     loadProviders();
   }, []);
+
+  function refreshList() {
+    loadProviders();
+  }
 
   return (
     <Background>
@@ -25,6 +30,8 @@ export default function SelectProvider({ navigation }) {
         <ProviderList
           data={providers}
           keyExtractor={provider => String(provider.id)}
+          onRefresh={refreshList}
+          refreshing={false}
           renderItem={({ item }) => (
             <Provider
               onPress={() => navigation.navigate('SelectDateTime', { item })}

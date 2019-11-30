@@ -37,6 +37,10 @@ function Dashboard({ isFocused }) {
     );
   }
 
+  function refreshList() {
+    loadAppointments();
+  }
+
   return (
     <Background>
       <Container>
@@ -45,6 +49,8 @@ function Dashboard({ isFocused }) {
         <List
           data={appointments}
           keyExtractor={item => String(item.id)}
+          onRefresh={refreshList}
+          refreshing={false}
           renderItem={({ item }) => (
             <Appointments onCancel={() => handleCancel(item.id)} data={item} />
           )}
