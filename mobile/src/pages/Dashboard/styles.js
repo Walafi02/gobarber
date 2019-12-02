@@ -17,3 +17,13 @@ export const List = styled.FlatList.attrs({
   showVerticalScrollIndicator: true,
   contentContainerStyle: { padding: 30 },
 })``;
+
+export const EmptyAppointmentsView = styled.View`
+  margin: 10px;
+  align-items: center;
+`;
+
+export const EmptyAppointmentsText = styled.Text`
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+`;

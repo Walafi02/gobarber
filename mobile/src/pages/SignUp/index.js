@@ -22,9 +22,9 @@ export default function SignUp({ navigation }) {
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState('walafi');
-  const [email, setEmail] = useState('walafif100@teste.com');
-  const [password, setPassword] = useState('123456');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleSubmit() {
     dispatch(signUpRequest(name, email, password));

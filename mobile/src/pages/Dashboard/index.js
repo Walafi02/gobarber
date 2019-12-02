@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { withNavigationFocus } from 'react-navigation';
-import { Container, Title, List } from './styles';
+
+import {
+  Container,
+  Title,
+  List,
+  EmptyAppointmentsView,
+  EmptyAppointmentsText,
+} from './styles';
 
 import api from '~/services/api';
 
@@ -46,15 +53,24 @@ function Dashboard({ isFocused }) {
       <Container>
         <Title>Agendamentos</Title>
 
-        <List
-          data={appointments}
-          keyExtractor={item => String(item.id)}
-          onRefresh={refreshList}
-          refreshing={false}
-          renderItem={({ item }) => (
-            <Appointments onCancel={() => handleCancel(item.id)} data={item} />
-          )}
-        />
+        {appointments.length === 0 ? (
+          <EmptyAppointmentsView>
+            <EmptyAppointmentsText>Sem Agendamentos</EmptyAppointmentsText>
+          </EmptyAppointmentsView>
+        ) : (
+          <List
+            data={appointments}
+            keyExtractor={item => String(item.id)}
+            onRefresh={refreshList}
+            refreshing={false}
+            renderItem={({ item }) => (
+              <Appointments
+                onCancel={() => handleCancel(item.id)}
+                data={item}
+              />
+            )}
+          />
+        )}
       </Container>
     </Background>
   );

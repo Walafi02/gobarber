@@ -1,8 +1,8 @@
 import { Alert } from 'react-native';
-import { takeLatest, call, put, all, delay } from 'redux-saga/effects';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
+import NavigationService from '~/services/navigation';
 
 import api from '~/services/api';
-// import history from '~/services/history';
 
 import { signInSuccess, signFailure } from './actions';
 
@@ -24,7 +24,7 @@ export function* signIn({ payload }) {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield delay(3000);
+    // yield delay(3000);
     yield put(signInSuccess(token, user));
 
     // history.push('/dashboard');
@@ -48,6 +48,7 @@ export function* signUp({ payload }) {
       password,
     });
 
+    NavigationService.navigate('SignIn');
     // history.push('/');
   } catch (error) {
     Alert.alert(

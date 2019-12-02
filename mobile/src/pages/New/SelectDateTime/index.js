@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+// import DatePicker from 'react-native-datepicker';
+
 import Background from '~/components/Background';
 import DateTimeInput from '~/components/DateTimeInput';
 
@@ -34,6 +36,34 @@ export default function SelectDateTime({ navigation }) {
     <Background>
       <Container>
         <DateTimeInput date={date} onChange={setDate} />
+        {/* <DatePicker
+          // style={{ width: 200 }}
+          date={new Date()}
+          mode="date"
+          // placeholder="select date"
+          // format="YYYY-MM-DD"
+          minDate="2019-12-01"
+          // maxDate="2016-06-01"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              display: 'none',
+              // position: 'absolute',
+              // left: 0,
+              // top: 4,
+              // marginLeft: 0,
+            },
+            dateInput: {
+              marginLeft: 36,
+            },
+            // ... You can check the source to find the other keys.
+          }}
+          onDateChange={date => {
+            // this.setState({ date: date });
+          }}
+        /> */}
+
         <HoursList
           data={hours}
           keyExtractor={item => item.time}
